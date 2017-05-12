@@ -1,0 +1,10 @@
+{
+	// Allow multi-selection
+    "multi_select": true,
+
+    // Use subnotify if available
+    "use_sub_notify": true,
+
+    // Export HTML CSS.
+    "export_css": "Packages/CopyAsHtml/css/export.css"
+}
