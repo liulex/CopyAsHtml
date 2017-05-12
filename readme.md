@@ -8,7 +8,9 @@ It uses Sublime's theme colors and font styles.
 
 ## Install
 
-Maual install:
+Use the **Sublime Package Control** and search for `Copy as HTML`.
+
+or
 
 Download this repo and place the whole folder in Sublime's `Packages` directory.
 
