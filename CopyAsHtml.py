@@ -46,7 +46,8 @@ HTML_HEADER = '''
 
 BODY_START = '<pre class="code_page code_text">'
 
-LINE = '<div>%(code)s\n</div>'    
+# MS word needs the font info
+LINE = '<div style="font-family: %(fontface)s; font-size: %(fontsize)spt;">%(code)s\n</div>'    
 
 CODE = '<span class="%(class)s" style="background-color: %(highlight)s; color: %(color)s;">%(content)s</span>'
 
@@ -184,6 +185,8 @@ class CopyAsHtml(object):
         """Print the line."""
 
         html_line = LINE % {
+            "fontface": self.font_face,
+            "fontsize": self.font_size, 
             "code": line
         }
 
