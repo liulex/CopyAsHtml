@@ -4,6 +4,8 @@
 # Based off of http://stackoverflow.com/a/3429034/334717
 # and http://pywin32.hg.sourceforge.net/hgweb/pywin32/pywin32/file/4c7503da2658/win32/src/win32clipboardmodule.cpp
 
+# Copyright (c) 2012 Nicolas Perriault
+
 import ctypes
 from ctypes import c_int, c_size_t, c_wchar, c_void_p, sizeof, memmove
 
@@ -73,10 +75,7 @@ def Put(data, format):
 
 
 # Based off of http://code.activestate.com/recipes/474121-getting-html-from-the-windows-clipboard/
-def EncodeHTML(fragment):
-    DEFAULT_HTML_BODY = \
-        "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">" \
-        "<HTML><HEAD></HEAD><BODY><!--StartFragment-->%s<!--EndFragment--></BODY></HTML>"
+def EncodeHTML(html):
 
     MARKER_BLOCK_OUTPUT = \
         "Version:0.9\r\n" \
@@ -85,9 +84,11 @@ def EncodeHTML(fragment):
         "StartFragment:%09d\r\n" \
         "EndFragment:%09d\r\n"
 
-    html = DEFAULT_HTML_BODY % fragment
-    fragmentStart = html.index(fragment)
-    fragmentEnd = fragmentStart + len(fragment)
+    START_INDICATOR = '<!--StartFragment-->'
+    END_INDICATOR = '<!--EndFragment-->'
+    
+    fragmentStart = html.index(START_INDICATOR) + len(START_INDICATOR)
+    fragmentEnd = html.index(END_INDICATOR, fragmentStart)
 
     dummyPrefix = MARKER_BLOCK_OUTPUT % (0, 0, 0, 0)
     lenPrefix = len(dummyPrefix)

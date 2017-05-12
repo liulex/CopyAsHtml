@@ -1,7 +1,7 @@
 /* General */
 body { color: {{ var.body_fg }}; }
 pre { border: 0; margin: 0; padding: 0; }
-.code_text { font: {{ var.font_size }}pt {{ var.font_face }}, "Courier", Monospace; }
+.code_text { font-size: {{ var.font_size }}pt; font-family: {{ var.font_face }}, "Courier", Monospace; }
 .code_page { background-color: {{ var.page_bg }}; }
 .simple_code_page { background-color: white; color: black }
 td.code_line div { width: 100%; }
