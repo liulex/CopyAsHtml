@@ -1,9 +1,10 @@
 # CopyAsHtml
 This is a fork of [ExportHtml](https://github.com/facelessuser/ExportHtml).
+
 This plugin allows you the copy your code in HTML format to preserve its syntax highlighting.
 It uses Sublime's theme colors and font styles.
 
-\* For the moment it only supports Windows. Pull requests are welcome.
+\* For the moment, it only supports Windows. Pull requests are welcome.
 
 ## Usage
 
@@ -19,10 +20,10 @@ You can also bind the command to a key combination, for example:
 
 Tip: Use it with [Snipaste](https://snipaste.com). :wink:
 
-#Credits
+## Credits
 - [ExportHtml](https://github.com/facelessuser/ExportHtml)
 - [SublimeHighlight](https://github.com/n1k0/SublimeHighlight)
 - [PrintHtml](https://github.com/agibsonsw/PrintHtml)
 
-# License
+## License
 MIT
