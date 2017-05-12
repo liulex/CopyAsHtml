@@ -14,7 +14,7 @@ or
 
 Download this repo and place the whole folder in Sublime's `Packages` directory.
 
-Sublime will automacitally download the dependencies and when it's done, restart Sublime.
+Sublime will automatically download the dependencies and when it's done, restart Sublime.
 
 ## Usage
 
