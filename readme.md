@@ -11,7 +11,8 @@ It uses Sublime's theme colors and font styles.
 Maual install:
 
 Download this repo and place the whole folder in Sublime's `Packages` directory.
-Sublime will automacitally downloand the dependencies and when it's done, restart Sublime.
+
+Sublime will automacitally download the dependencies and when it's done, restart Sublime.
 
 ## Usage
 
