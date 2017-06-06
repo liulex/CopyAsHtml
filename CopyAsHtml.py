@@ -18,19 +18,19 @@ THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRI
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 """
-import sublime
-import sublime_plugin
+import sublime, sublime_plugin
+
 from os import path
 import tempfile
 import re
-import CopyAsHtml.lib.desktop as desktop
-from CopyAsHtml.lib.color_scheme_matcher import ColorSchemeMatcher
-from CopyAsHtml.lib.color_scheme_tweaker import ColorSchemeTweaker
-from CopyAsHtml.lib.notify import notify
 import jinja2
 
+from .lib import desktop
+from .lib.color_scheme_matcher import ColorSchemeMatcher
+from .lib.color_scheme_tweaker import ColorSchemeTweaker
+from .lib.notify import notify
 if desktop.get_desktop() == 'Windows':
-    import CopyAsHtml.winclip as winclip
+    from .lib import winclip
 
 PACKAGE_SETTINGS = "CopyAsHtml.sublime-settings"
 
@@ -47,7 +47,7 @@ HTML_HEADER = '''
 BODY_START = '<pre class="code_page code_text">'
 
 # MS word needs the font info
-LINE = '<div style="font-family: %(fontface)s; font-size: %(fontsize)spt;">%(code)s\n</div>'    
+LINE = '<div style="font-family: %(fontface)s; font-size: %(fontsize)spt;">%(code)s\n</div>'
 
 CODE = '<span class="%(class)s" style="background-color: %(highlight)s; color: %(color)s;">%(content)s</span>'
 
@@ -166,7 +166,7 @@ class CopyAsHtml(object):
             curr_sel = self.view.full_line(curr_sel)
 
         self.size = curr_sel.end()
-        self.pt = curr_sel.begin() 
+        self.pt = curr_sel.begin()
         self.end = self.pt + 1
         self.curr_row = self.view.rowcol(self.pt)[0] + 1
         self.start_line = self.curr_row
@@ -186,7 +186,7 @@ class CopyAsHtml(object):
 
         html_line = LINE % {
             "fontface": self.font_face,
-            "fontsize": self.font_size, 
+            "fontsize": self.font_size,
             "code": line
         }
 
@@ -280,7 +280,7 @@ class CopyAsHtml(object):
             bgcolor = color_match.bg_simulated
 
             region = sublime.Region(self.pt, self.end)
-            
+
             # Collect plain text
             text = self.view.substr(region)
             self.plain_text += text
@@ -331,7 +331,7 @@ class CopyAsHtml(object):
 
     def open_html(self, x):
         """Open html file."""
-        
+
         return tempfile.NamedTemporaryFile(mode='w+', delete=False, suffix=x)
 
     def run(self, **kwargs):
@@ -345,7 +345,7 @@ class CopyAsHtml(object):
         with OpenHtml(html_file) as html:
             self.write_header(html)
             self.write_body(html)
-            
+
             # Set clipboard
             html.seek(0)
 
@@ -355,7 +355,7 @@ class CopyAsHtml(object):
             else:
                 #TODO other platforms...
                 sublime.set_clipboard(self.plain_text)
-            
+
             notify("HTML copied to clipboard")
 
 def plugin_loaded():
