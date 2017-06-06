@@ -8,7 +8,7 @@ It uses Sublime's theme colors and font styles.
 
 ## Install
 
-_Not yet_: Use the **Sublime Package Control** and search for `Copy as HTML`.
+Use the **Sublime Package Control** and search for `Copy as HTML`.
 
 or
 
