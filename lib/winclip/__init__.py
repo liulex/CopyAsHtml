@@ -40,7 +40,7 @@ def Copy(data, type='text', plaintext=None):
     data = data.encode('utf-8', 'replace')
 
     unicodetext = plaintext.encode('utf_16')
-    plaintext = plaintext.encode('cp1252', 'replace')
+    # plaintext = plaintext.encode('cp1252', 'replace')
 
     ocb(c_void_p(0))  # Open Clip, Default task
     ecb()
@@ -49,6 +49,7 @@ def Copy(data, type='text', plaintext=None):
         Put(data, CF_RTF)
     elif type == 'html':
         Put(data, CF_HTML)
+        Put(unicodetext, CF_UNICODETEXT)
 
     ccb()
 
@@ -86,14 +87,16 @@ def EncodeHTML(html):
 
     START_INDICATOR = '<!--StartFragment-->'
     END_INDICATOR = '<!--EndFragment-->'
-    
+
     fragmentStart = html.index(START_INDICATOR) + len(START_INDICATOR)
     fragmentEnd = html.index(END_INDICATOR, fragmentStart)
 
     dummyPrefix = MARKER_BLOCK_OUTPUT % (0, 0, 0, 0)
     lenPrefix = len(dummyPrefix)
 
-    prefix = MARKER_BLOCK_OUTPUT % (lenPrefix, len(html) + lenPrefix,
-                    fragmentStart + lenPrefix, fragmentEnd + lenPrefix)
+
+    # caution: do not use len(html) to count the bytes
+    prefix = MARKER_BLOCK_OUTPUT % (lenPrefix, len(html.encode('utf-8', 'replace')) + lenPrefix,
+                                    fragmentStart + lenPrefix, fragmentEnd + lenPrefix)
 
     return (prefix + html)
