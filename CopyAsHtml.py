@@ -32,9 +32,9 @@ if desktop.get_desktop() == 'Windows':
 
 
 HTML_HEADER = '''\
-<!DOCTYPE html><HTML><HEAD><meta charset="UTF-8"><HEAD /><BODY><!--StartFragment-->\
+<!DOCTYPE html><HTML><HEAD><meta charset="UTF-8"></HEAD><BODY><!--StartFragment-->\
 <style type="text/css">\
-pre {font-family: %(fface)s, Consolas, Monospace; font-size: %(fsize)dpt; background: %(bcolor)s;}\
+pre {font-family: %(fface)s, Monospace; font-size: %(fsize)dpt; background: %(bcolor)s;}\
 %(styles)s</style><pre>'''
 
 HTML_END = '\n</pre><!--EndFragment--></BODY></HTML>'
